@@ -1,4 +1,4 @@
-import { PrismaUsersRepository } from "../../repositories/prisma/PrismaUserRepository";
+import { PrismaUsersRepository } from "@repositories/prisma/PrismaUserRepository";
 import { createUser } from "./createUser";
 import { createUserController } from "./createUserController";
 

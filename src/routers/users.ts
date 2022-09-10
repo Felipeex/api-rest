@@ -1,4 +1,4 @@
-import { CreateUserControllerProvider } from "../use-cases/createUser";
+import { CreateUserControllerProvider } from "@use-cases/createUser";
 import express, { Request, Response } from "express";
 const router = express.Router();
 

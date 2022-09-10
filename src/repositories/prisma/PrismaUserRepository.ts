@@ -1,11 +1,10 @@
-import { UserProps } from "../../models/user";
+import { UserProps } from "@models/user";
 import { usersRepository } from "../userRepository";
 
 export class PrismaUsersRepository implements usersRepository {
   public items: UserProps[] = [];
 
   async create(user: UserProps): Promise<void> {
-    console.log("prisma");
     this.items.push(user);
   }
 

@@ -1,17 +1,30 @@
+import crypto from "node:crypto";
+
 export interface UserProps {
-  id: string;
+  id?: string;
   email: string;
   name: string;
   photo: string;
-  createAt: Date;
-  updatedAt: Date;
+  createAt?: Date;
+  updatedAt?: Date;
 }
 
 export class User {
   constructor(props: UserProps) {
-    Object.assign(this, props);
+    if (!props.id) {
+      props.id = crypto.randomUUID();
+    }
 
-    const { name, email, photo, createAt, updatedAt }: UserProps = props;
+    if (!props.createAt) {
+      props.createAt = new Date();
+    }
+
+    if (!props.updatedAt) {
+      props.updatedAt = new Date();
+    }
+
+    Object.assign(this, props);
+    const { name, email, photo }: UserProps = props;
 
     if (!name) {
       throw new Error("name is empty");
@@ -23,14 +36,6 @@ export class User {
 
     if (!photo) {
       throw new Error("photo is empty");
-    }
-
-    if (!createAt) {
-      throw new Error("createAt is empty");
-    }
-
-    if (!updatedAt) {
-      throw new Error("updatedAt is empty");
     }
   }
 }

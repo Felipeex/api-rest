@@ -1,4 +1,4 @@
-import { User } from "../models/user";
+import { User } from "@models/user";
 
 export interface usersRepository {
   create(user: User): Promise<void>;

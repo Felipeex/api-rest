@@ -1,4 +1,4 @@
-import { UserProps } from "../../../src/models/user";
+import { UserProps } from "@models/user";
 import { usersRepository } from "../../../src/repositories/userRepository";
 
 export class InMemoryUsersRepository implements usersRepository {

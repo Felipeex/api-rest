@@ -1,5 +1,5 @@
-import { UserProps, User } from "../../models/user";
-import { usersRepository } from "../../repositories/userRepository";
+import { UserProps, User } from "@models/user";
+import { usersRepository } from "@repositories/userRepository";
 
 type createUserRequest = UserProps;
 
