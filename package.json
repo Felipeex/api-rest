@@ -4,7 +4,8 @@
   "main": "./src/router.ts",
   "scripts": {
     "test": "vitest",
-    "dev": "ts-node-dev --ignore-watch node_modules ."
+    "dev": "ts-node-dev --ignore-watch node_modules .",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

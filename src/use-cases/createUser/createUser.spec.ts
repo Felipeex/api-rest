@@ -22,7 +22,42 @@ describe("create a user", () => {
   });
 });
 
-test("Validate exist email", () => {
+test("validating existing email", async () => {
   const inMemoryUsersRepository = new InMemoryUsersRepository();
-  inMemoryUsersRepository.findByEmailInMemory("felipeexx48@gmail.com");
+  const CreateUser = new createUser(inMemoryUsersRepository);
+
+  await CreateUser.execute({
+    id: uuid(),
+    name: "Felipe Lima",
+    email: "felipeexx48@gmail.com",
+    photo: "null",
+    createAt: new Date(),
+    updatedAt: new Date(),
+  });
+
+  const email = await inMemoryUsersRepository.findByEmailInMemory(
+    "felipeexx48@gmail.com"
+  );
+
+  expect(email).toEqual(true);
+});
+
+test("validating non-existing email", async () => {
+  const inMemoryUsersRepository = new InMemoryUsersRepository();
+  const CreateUser = new createUser(inMemoryUsersRepository);
+
+  await CreateUser.execute({
+    id: uuid(),
+    name: "Felipe Lima",
+    email: "felipeexx48@gmail.com",
+    photo: "null",
+    createAt: new Date(),
+    updatedAt: new Date(),
+  });
+
+  const email = await inMemoryUsersRepository.findByEmailInMemory(
+    "felipe@gmail.com"
+  );
+
+  expect(email).toEqual(false);
 });

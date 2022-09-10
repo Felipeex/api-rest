@@ -1,14 +1,19 @@
-import { User } from "../../models/user";
+import { UserProps } from "../../models/user";
 import { usersRepositoryInMemory } from "../user-repository";
 
 export class InMemoryUsersRepository implements usersRepositoryInMemory {
-  public items: User[] = [];
+  public items: UserProps[] = [];
 
-  async createInMemory(user: User): Promise<void> {
+  async createInMemory(user: UserProps): Promise<void> {
     this.items.push(user);
   }
 
-  async findByEmailInMemory(email: string): Promise<void> {
-    console.log(email);
+  async findByEmailInMemory(email: string): Promise<boolean> {
+    const findEmail = this.items.find((item) => item.email === email);
+
+    if (findEmail) {
+      return true;
+    }
+    return false;
   }
 }
