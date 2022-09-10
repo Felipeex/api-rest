@@ -1,7 +1,9 @@
-import { InMemoryUsersRepository } from "../../repositories/in-memory/in-memory-users";
+import { PrismaUsersRepository } from "../../repositories/prisma/PrismaUserRepository";
 import { createUser } from "./createUser";
 import { createUserController } from "./createUserController";
 
-const inMemoryUsersRepository = new InMemoryUsersRepository();
-const CreateUser = new createUser(inMemoryUsersRepository);
-export const userControllerProvider = new createUserController(CreateUser);
+const PrismaUserRepository = new PrismaUsersRepository();
+const CreateUser = new createUser(PrismaUserRepository);
+export const CreateUserControllerProvider = new createUserController(
+  CreateUser
+);

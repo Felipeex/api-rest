@@ -5,6 +5,7 @@ app.use(express.json());
 
 import users from "./routers/users";
 app.use("/users", users);
+app.use("/user", users);
 
 app.listen(process.env.PORT || 4000, () => {
   console.log("Api rodando com sucesso! 🚀");

@@ -1,14 +1,15 @@
 import { UserProps } from "../../models/user";
-import { usersRepositoryInMemory } from "../user-repository";
+import { usersRepository } from "../userRepository";
 
-export class InMemoryUsersRepository implements usersRepositoryInMemory {
+export class PrismaUsersRepository implements usersRepository {
   public items: UserProps[] = [];
 
-  async createInMemory(user: UserProps): Promise<void> {
+  async create(user: UserProps): Promise<void> {
+    console.log("prisma");
     this.items.push(user);
   }
 
-  async findByEmailInMemory(email: string): Promise<boolean> {
+  async findByEmail(email: string): Promise<boolean> {
     const findEmail = this.items.find((item) => item.email === email);
 
     if (findEmail) {

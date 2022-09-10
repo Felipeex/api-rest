@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 import { describe, expect, it, test } from "vitest";
 import { createUser } from "./createUser";
 import { User } from "../../models/user";
-import { InMemoryUsersRepository } from "../../repositories/in-memory/in-memory-users";
+import { InMemoryUsersRepository } from "../../../test/repositories/in-memory/in-memory-users";
 
 describe("create a user", () => {
   it("should create a user", () => {
@@ -35,7 +35,7 @@ test("validating existing email", async () => {
     updatedAt: new Date(),
   });
 
-  const email = await inMemoryUsersRepository.findByEmailInMemory(
+  const email = await inMemoryUsersRepository.findByEmail(
     "felipeexx48@gmail.com"
   );
 
@@ -55,9 +55,7 @@ test("validating non-existing email", async () => {
     updatedAt: new Date(),
   });
 
-  const email = await inMemoryUsersRepository.findByEmailInMemory(
-    "felipe@gmail.com"
-  );
+  const email = await inMemoryUsersRepository.findByEmail("felipe@gmail.com");
 
   expect(email).toEqual(false);
 });
