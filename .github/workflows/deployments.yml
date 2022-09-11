@@ -7,7 +7,7 @@ on:
     branches: ["master"]
 
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,6 +20,3 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm test
-
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag api-rest
