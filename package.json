@@ -7,7 +7,7 @@
     "coverage": "vitest run --coverage",
     "dev": "ts-node-dev -r tsconfig-paths/register --ignore-watch node_modules .",
     "build": "tsc",
-    "start": "node ./dist/router.js"
+    "start": "ts-node -r tsconfig-paths/register ./dist/src/router.js"
   },
   "keywords": [],
   "author": "",
