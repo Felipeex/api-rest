@@ -1,19 +1,26 @@
-import { UserProps } from "@models/user";
+import { User, UserProps } from "@models/user";
+import { prisma } from "src/database/client";
 import { usersRepository } from "../userRepository";
 
 export class PrismaUsersRepository implements usersRepository {
-  public items: UserProps[] = [];
-
-  async create(user: UserProps): Promise<void> {
-    this.items.push(user);
+  async create(user: UserProps): Promise<User> {
+    const { email, name, photo } = user;
+    const created = await prisma.user.create({
+      data: {
+        email,
+        name,
+        photo,
+      },
+    });
+    return created;
   }
 
   async findByEmail(email: string): Promise<boolean> {
-    const findEmail = this.items.find((item) => item.email === email);
-
-    if (findEmail) {
-      return true;
-    }
-    return false;
+    const findEmail = await prisma.user.findFirst({
+      where: {
+        email,
+      },
+    });
+    return !!findEmail;
   }
 }

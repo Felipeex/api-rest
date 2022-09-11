@@ -6,15 +6,13 @@ export class createUserController {
   constructor(private createUser: createUser) {}
 
   async handle(req: Request, res: Response): Promise<Response> {
-    const { name, email, photo, createAt, updatedAt }: UserProps = req.body;
+    const { name, email, photo }: UserProps = req.body;
 
     try {
       const createUser = await this.createUser.execute({
         name,
         email,
         photo,
-        createAt,
-        updatedAt,
       });
 
       return res.json(createUser);

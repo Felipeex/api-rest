@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:alpine
 
 WORKDIR /usr/app
 
@@ -9,8 +9,8 @@ RUN npm install
 
 COPY . .
 
+RUN npx prisma generate
 RUN npm run build
 
-
-EXPOSE 3000
+EXPOSE 3333
 CMD [ "npm", "start" ]
