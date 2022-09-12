@@ -4,17 +4,17 @@ import { describe, expect, it, test } from "vitest";
 import { createUser } from "./createUser";
 
 describe("create a user", () => {
-  it("should create a user", () => {
+  it("should create a user", async () => {
     const inMemoryUsersRepository = new InMemoryUsersRepository();
     const CreateUser = new createUser(inMemoryUsersRepository);
 
-    expect(
-      CreateUser.execute({
-        name: "Felipe Lima",
-        email: "felipeexx48@gmail.com",
-        photo: "null",
-      })
-    ).resolves.toBeInstanceOf(User);
+    const user = await CreateUser.execute({
+      name: "Felipe Lima",
+      email: "felipeexx48@gmail.com",
+      photo: "null",
+    });
+
+    expect(user).toBeInstanceOf(User);
   });
 });
 

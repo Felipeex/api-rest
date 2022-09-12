@@ -1,5 +1,3 @@
-import crypto from "node:crypto";
-
 export interface UserProps {
   id?: string;
   email: string;
@@ -9,10 +7,6 @@ export interface UserProps {
 
 export class User {
   constructor(props: UserProps) {
-    if (!props.id) {
-      props.id = crypto.randomUUID();
-    }
-
     Object.assign(this, props);
     const { name, email, photo }: UserProps = props;
 

@@ -23,4 +23,13 @@ export class PrismaUsersRepository implements usersRepository {
     });
     return !!findEmail;
   }
+
+  async getUser(id: string): Promise<User[] | any> {
+    try {
+      if (id) return await prisma.user.findFirst({ where: { id } });
+    } catch (err) {
+      throw new Error("User not found");
+    }
+    return await prisma.user.findMany({ where: {} });
+  }
 }

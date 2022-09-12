@@ -1,10 +1,9 @@
 import express, { NextFunction, Request, Response } from "express";
-
+import "express-async-errors";
 const app = express();
 app.use(express.json());
 
 import users from "./routers/users";
-app.use("/users", users);
 app.use("/user", users);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
