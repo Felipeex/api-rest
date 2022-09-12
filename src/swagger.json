@@ -1,0 +1,126 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Api rest",
+    "description": "Essa api pode armazenar e manipular usuários.",
+    "contact": {
+      "email": "felipeexx48@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000/api"
+    }
+  ],
+  "paths": {
+    "/user": {
+      "post": {
+        "summary": "Cadastrar Usuários",
+        "description": "Rota para cadrastrar usuários.",
+        "tag": ["users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Users"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "Felipe Lima",
+                    "email": "felipeexx48@gmail.com",
+                    "photo": "github.com/Felipeex.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Email already exists."
+          },
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users",
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Buscar Todos Usuários",
+        "description": "Rota para buscar todos usuários.",
+        "tag": ["users"],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users",
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "summary": "Buscar Usuário pelo ID",
+        "description": "Rota para buscar usuário.",
+        "tag": ["users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do usuário.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "User does not exist."
+          },
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users",
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Users": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "required": true
+          },
+          "email": {
+            "type": "string",
+            "required": true
+          },
+          "photo": {
+            "type": "string",
+            "required": false
+          }
+        }
+      }
+    }
+  }
+}

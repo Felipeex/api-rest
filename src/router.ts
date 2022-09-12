@@ -6,7 +6,7 @@ import "express-async-errors";
 const app = express();
 app.use(express.json());
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup());
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 import users from "./routers/users";
 import { AppError } from "./errors/appError";
