@@ -1,15 +1,17 @@
 import express, { NextFunction, Request, Response } from "express";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocs from "./swagger.json";
+import cors from "cors"
 import "express-async-errors";
 
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 import users from "./routers/users";
-import { AppError } from "./errors/appError";
+import { AppError } from "@errors/appError";
 app.use("/api/user", users);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

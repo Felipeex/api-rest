@@ -1,7 +1,7 @@
 import { User, UserProps } from "@models/user";
 import { prisma } from "@database/client";
 import { usersRepository } from "@repositories/userRepository";
-import { AppError } from "src/errors/appError";
+import { AppError } from "@errors/appError";
 
 export class PrismaUsersRepository implements usersRepository {
   async create(user: UserProps): Promise<User | void> {

@@ -1,6 +1,6 @@
 import { User, UserProps } from "@models/user";
 import { AppError } from "@errors/appError";
-import { usersRepository } from "../../../src/repositories/userRepository";
+import { usersRepository } from "@repositories/userRepository";
 
 export class InMemoryUsersRepository implements usersRepository {
   public items: UserProps[] = [];
