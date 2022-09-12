@@ -1,6 +1,6 @@
+import express, { Request, Response } from "express";
 import { CreateUserControllerProvider } from "@use-cases/createUser";
 import { getUserControllerProvider } from "@use-cases/getUser";
-import express, { Request, Response } from "express";
 const router = express.Router();
 
 router.post("/", (req: Request, res: Response) => {

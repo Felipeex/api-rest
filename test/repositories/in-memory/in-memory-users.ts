@@ -1,4 +1,5 @@
 import { User, UserProps } from "@models/user";
+import { AppError } from "@errors/appError";
 import { usersRepository } from "../../../src/repositories/userRepository";
 
 export class InMemoryUsersRepository implements usersRepository {
@@ -22,7 +23,7 @@ export class InMemoryUsersRepository implements usersRepository {
     try {
       if (id) return this.items.find((item) => item.id === id);
     } catch (err) {
-      throw new Error("User not found");
+      throw new AppError("User not found");
     }
     return this.items;
   }

@@ -1,3 +1,5 @@
+import { AppError } from "@errors/appError";
+
 export interface UserProps {
   id?: string;
   email: string;
@@ -8,18 +10,14 @@ export interface UserProps {
 export class User {
   constructor(props: UserProps) {
     Object.assign(this, props);
-    const { name, email, photo }: UserProps = props;
+    const { name, email }: UserProps = props;
 
     if (!name) {
-      throw new Error("name is empty");
+      throw new AppError("name is empty");
     }
 
     if (!email) {
-      throw new Error("email is empty");
-    }
-
-    if (!photo) {
-      throw new Error("photo is empty");
+      throw new AppError("email is empty");
     }
   }
 }

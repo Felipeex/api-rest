@@ -1,7 +1,7 @@
-import { InMemoryUsersRepository } from "@test/repositories/in-memory/in-memory-users";
 import { User } from "@models/user";
+import { InMemoryUsersRepository } from "@test/repositories/in-memory/in-memory-users";
+import { createUser } from "@use-cases/createUser/createUser";
 import { describe, expect, it, test } from "vitest";
-import { createUser } from "./createUser";
 
 describe("create a user", () => {
   it("should create a user", async () => {

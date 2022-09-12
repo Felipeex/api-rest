@@ -8,6 +8,8 @@ export default defineConfig({
       "@repositories": "./src/repositories/",
       "@routers": "./src/routers/",
       "@use-cases": "./src/use-cases/",
+      "@database": "./src/database/",
+      "@errors": "./src/errors/",
       "@test": "./test/",
     },
   },

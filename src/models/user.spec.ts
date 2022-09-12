@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { User } from "./user";
+import { User } from "@models/user";
 
 test("create a user", () => {
   const user = new User({
@@ -29,14 +29,4 @@ test("say error email is empty", () => {
       photo: "null",
     });
   }).toThrow("email is empty");
-});
-
-test("say error photo is empty", () => {
-  expect(() => {
-    new User({
-      name: "Felipe Lima",
-      email: "felipeexx48@gmail.com",
-      photo: "",
-    });
-  }).toThrow("photo is empty");
 });

@@ -1,9 +1,10 @@
 import { User, UserProps } from "@models/user";
-import { prisma } from "src/database/client";
-import { usersRepository } from "../userRepository";
+import { prisma } from "@database/client";
+import { usersRepository } from "@repositories/userRepository";
+import { AppError } from "src/errors/appError";
 
 export class PrismaUsersRepository implements usersRepository {
-  async create(user: UserProps): Promise<User> {
+  async create(user: UserProps): Promise<User | void> {
     const { email, name, photo } = user;
     const created = await prisma.user.create({
       data: {
@@ -25,11 +26,21 @@ export class PrismaUsersRepository implements usersRepository {
   }
 
   async getUser(id: string): Promise<User[] | any> {
-    try {
-      if (id) return await prisma.user.findFirst({ where: { id } });
-    } catch (err) {
-      throw new Error("User not found");
+    if (!id) return prisma.user.findMany({});
+
+    if (!id.match("^[0-9a-fA-F]{24}$"))
+      throw new AppError("User format is invalid");
+
+    const user = await prisma.user.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    if (!user) {
+      throw new AppError("User does not exist");
     }
-    return await prisma.user.findMany({ where: {} });
+
+    return user;
   }
 }

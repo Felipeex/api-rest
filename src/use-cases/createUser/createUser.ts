@@ -1,5 +1,6 @@
 import { UserProps, User } from "@models/user";
 import { usersRepository } from "@repositories/userRepository";
+import { AppError } from "@errors/appError";
 
 type createUserRequest = UserProps;
 
@@ -12,7 +13,7 @@ export class createUser {
     );
 
     if (EmailAlreadyExists) {
-      throw new Error("Email already exists.");
+      throw new AppError("Email already exists.");
     }
 
     const user = new User(request);
