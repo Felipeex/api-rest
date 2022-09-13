@@ -6,33 +6,16 @@ import { getUser } from "./getUser";
 
 describe("create and return users", async () => {
   const inMemoryUsersRepository = new InMemoryUsersRepository();
-  const CreateUser = new createUser(inMemoryUsersRepository);
   const GetUser = new getUser(inMemoryUsersRepository);
 
-  await CreateUser.execute({
-    name: "Felipe Lima",
-    email: "felipeexx48@gmail.com",
-    photo: "null",
-  });
-
-  await CreateUser.execute({
-    name: "Felipe Lima",
-    email: "felipeexx49@gmail.com",
-    photo: "null",
-  });
-
-  await CreateUser.execute({
-    name: "Felipe Lima",
-    email: "felipeexx50@gmail.com",
-    photo: "null",
-  });
-
-  await CreateUser.execute({
+  const user = new User({
     id: "3949374jiju8374387",
     name: "Felipe Lima",
     email: "felipeexx51@gmail.com",
     photo: "null",
   });
+
+  inMemoryUsersRepository.items.push(user)
 
   it("should get user", async () => {
     const user = await GetUser.execute("3949374jiju8374387");
@@ -45,7 +28,7 @@ describe("create and return users", async () => {
   });
 
   it("should users not exist", async () => {
-    const user = await GetUser.execute("noExist");
+    const user = await GetUser.execute("w94wuy7hugjvndfjv");
     expect(user).undefined;
   });
 });
