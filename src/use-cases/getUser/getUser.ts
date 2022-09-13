@@ -5,7 +5,7 @@ export class getUser {
   constructor(private usersRepository: usersRepository) {}
 
   async execute(id?: string): Promise<User | void> {
-    const getUser = await this.usersRepository.getUser(id);
+    const getUser = await this.usersRepository.get(id);
     return getUser;
   }
 }
