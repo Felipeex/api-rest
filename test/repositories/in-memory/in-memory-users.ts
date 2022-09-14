@@ -25,7 +25,14 @@ export class InMemoryUsersRepository implements usersRepository {
   }
 
   async update(user: UserProps): Promise<User> {
-    this.items.push(user);
+    const { id } = user
+    const findUser = this.items.find((item) => item.id === id);
+    
+    if (!id)
+      throw new AppError("User id is empty");
+
+    if (!findUser)
+      throw new AppError("User id is invalid");
     return user;
   }
 }

@@ -12,7 +12,7 @@ export class updateUserController {
       id,
       name,
       email,
-      photo
+      photo,
     });
 
     return res.json(updateUser);

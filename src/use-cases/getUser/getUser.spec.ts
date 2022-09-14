@@ -1,6 +1,5 @@
 import { User } from "@models/user";
 import { InMemoryUsersRepository } from "@test/repositories/in-memory/in-memory-users";
-import { createUser } from "@use-cases/createUser/createUser";
 import { describe, expect, it } from "vitest";
 import { getUser } from "./getUser";
 
@@ -29,6 +28,6 @@ describe("create and return users", async () => {
 
   it("should users not exist", async () => {
     const user = await GetUser.execute("w94wuy7hugjvndfjv");
-    expect(user).undefined;
+    expect(user).toBeUndefined();
   });
 });
