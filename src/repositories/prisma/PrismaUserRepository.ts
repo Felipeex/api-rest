@@ -29,7 +29,7 @@ export class PrismaUsersRepository implements usersRepository {
     if (!id) return prisma.user.findMany({});
 
     if (!id.match("^[0-9a-fA-F]{24}$"))
-      throw new AppError("User format is invalid");
+    throw new AppError("User format is invalid");
 
     const user = await prisma.user.findFirst({
       where: {
@@ -38,7 +38,8 @@ export class PrismaUsersRepository implements usersRepository {
     });
 
     if (!user)
-      throw new AppError("User does not exist");
+    throw new AppError("User does not exist");
+    
     return user;
   }
 
@@ -52,7 +53,7 @@ export class PrismaUsersRepository implements usersRepository {
     });
 
     if (!findById)
-      throw new AppError("User id is empty");
+    throw new AppError("User id is empty");
     const update = await prisma.user.update({
       where: { id },
       data: {
@@ -63,7 +64,31 @@ export class PrismaUsersRepository implements usersRepository {
     })
 
     if (!update)
-      throw new AppError("User id is invalid");
+    throw new AppError("User id is invalid");
+
     return update
+  }
+
+  async delete(id: string): Promise<User[] | any> {
+    if (!id)
+    throw new AppError("User id is empty");
+
+    if (!id.match("^[0-9a-fA-F]{24}$"))
+    throw new AppError("User format is invalid");
+
+    const findById = await prisma.user.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    if (!findById)
+    throw new AppError("User id is invalid");
+
+    const Delete = await prisma.user.delete({
+      where: { id },
+    })
+
+    return Delete
   }
 }
