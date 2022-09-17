@@ -69,6 +69,29 @@
             }
           }
         }
+      },
+      "put": {
+        "summary": "Editar usuário",
+        "description": "Rota para Editar usuário.",
+        "tag": ["users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Users"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "Felipe Lima",
+                    "email": "felipeexx48@gmail.com",
+                    "photo": "github.com/Felipeex.png"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/user/{id}": {
