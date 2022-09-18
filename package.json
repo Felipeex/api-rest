@@ -5,7 +5,7 @@
   "scripts": {
     "test": "vitest .",
     "coverage": "vitest run --coverage",
-    "dev": "tsnd -r tsconfig-paths/register --ignore-watch node_modules .",
+    "dev": "tsnd -r tsconfig-paths/register --exit-child --ignore-watch node_modules .",
     "build": "tsc",
     "start": "ts-node -r tsconfig-paths/register ./dist/src/router.js"
   },

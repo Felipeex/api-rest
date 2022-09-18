@@ -29,10 +29,24 @@ export class InMemoryUsersRepository implements usersRepository {
     const findUser = this.items.find((item) => item.id === id);
     
     if (!id)
-      throw new AppError("User id is empty");
+    throw new AppError("User id is empty");
 
     if (!findUser)
-      throw new AppError("User id is invalid");
+    throw new AppError("User id is invalid");
+
     return user;
+  }
+
+  async delete(id: string): Promise<UserProps[] | any> {
+    if (!id)
+    throw new AppError("User id is empty");
+    
+    const findById = this.items.find((item) => item.id === id);
+
+    if (!findById)
+    throw new AppError("User id is invalid");
+
+    const index = this.items.indexOf(findById)
+    return delete this.items[index]
   }
 }

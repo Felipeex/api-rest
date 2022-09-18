@@ -92,6 +92,42 @@
             }
           }
         }
+      },
+      "delete": {
+        "summary": "Deletar Usuário",
+        "description": "Rota para deletar usuário.",
+        "tag": ["users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Users"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "id": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "User id is invalid"
+          },
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users",
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/user/{id}": {
