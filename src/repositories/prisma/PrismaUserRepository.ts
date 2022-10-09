@@ -46,6 +46,9 @@ export class PrismaUsersRepository implements usersRepository {
   async update(user: UserProps): Promise<void | User> {
     const { id, email, name, photo } = user;
 
+    if (!id)
+    throw new AppError("User id is empty");
+
     const findById = await prisma.user.findFirst({
       where: {
         id,
@@ -53,7 +56,7 @@ export class PrismaUsersRepository implements usersRepository {
     });
 
     if (!findById)
-    throw new AppError("User id is empty");
+    throw new AppError("User id is invalid");
     const update = await prisma.user.update({
       where: { id },
       data: {
@@ -62,9 +65,6 @@ export class PrismaUsersRepository implements usersRepository {
         photo
       }
     })
-
-    if (!update)
-    throw new AppError("User id is invalid");
 
     return update
   }
